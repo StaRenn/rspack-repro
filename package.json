@@ -24,6 +24,7 @@
     "immer": "^10.1.1",
     "isarray": "^2.0.5",
     "mini-create-react-context": "^0.4.1",
+    "object-assign": "^4.1.1",
     "path-to-regexp": "1.9.0",
     "prop-types": "^15.8.1",
     "react": "18.3.1",
@@ -46,6 +47,8 @@
     "webpack-cli": "^6.0.1"
   },
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@rspack/plugin-react-refresh": "^1.4.3",
     "@swc/core": "^1.12.11",
     "@swc/helpers": "0.5.17",
     "@types/react": "18.3.3",
@@ -55,6 +58,7 @@
     "cross-env": "^7.0.3",
     "http-server": "^14.1.1",
     "npm-run-all2": "^7.0.2",
+    "react-refresh": "^0.17.0",
     "swc-loader": "^0.2.6"
   },
   "packageManager": "pnpm@9.15.2"

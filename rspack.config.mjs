@@ -1,6 +1,8 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isRunningWebpack = !!process.env.WEBPACK;
@@ -10,6 +12,12 @@ if (!isRunningRspack && !isRunningWebpack) {
 }
 
 const swc = isRunningWebpack ? "swc-loader" : "builtin:swc-loader";
+
+const mode = process.env.NODE_ENV || "development";
+
+const RefreshPlugin = isRunningWebpack
+  ? ReactRefreshWebpackPlugin
+  : ReactRefreshRspackPlugin;
 
 /**
  * @type {import('webpack').Configuration | import('@rspack/cli').Configuration}
@@ -49,8 +57,8 @@ const config = {
                   legacyDecorator: true,
                   react: {
                     runtime: "automatic",
-                    development: false,
-                    refresh: false,
+                    development: mode === "development",
+                    refresh: mode === "development",
                   },
                 },
               },
@@ -63,11 +71,14 @@ const config = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: "src/app/index.html",
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/app/index.html",
+    }),
+    mode === "development" && new RefreshPlugin(),
+  ].filter(Boolean),
   devtool: false, // "source-map",
-  mode: "production",
+  mode,
   entry: "src/app/index.tsx",
   resolve: {
     extensions: [".js", ".ts", ".tsx", "scss"],
