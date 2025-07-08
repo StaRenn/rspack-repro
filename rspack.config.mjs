@@ -9,16 +9,13 @@ if (!isRunningRspack && !isRunningWebpack) {
   throw new Error("Unknown bundler");
 }
 
+const swc = isRunningWebpack ? "swc-loader" : "builtin:swc-loader";
+
 /**
  * @type {import('webpack').Configuration | import('@rspack/cli').Configuration}
  */
 const config = {
-  mode: "development",
-  devtool: false,
-  entry: {
-    main: "./src/index",
-  },
-  plugins: [new HtmlWebpackPlugin()],
+  target: "web",
   output: {
     clean: true,
     path: isRunningWebpack
@@ -26,8 +23,59 @@ const config = {
       : path.resolve(__dirname, "rspack-dist"),
     filename: "[name].js",
   },
-  experiments: {
-    css: true,
+  module: {
+    rules: [
+      {
+        test: /\.(jsx?|tsx?|cjs)$/,
+        use: [
+          {
+            loader: swc,
+            options: {
+              module: {
+                type: "es6",
+                ignoreDynamic: true,
+                noInterop: false,
+              },
+              isModule: "unknown",
+              jsc: {
+                externalHelpers: true,
+                parser: {
+                  syntax: "typescript",
+                  tsx: true,
+                  decorators: true,
+                  dynamicImport: true,
+                },
+                transform: {
+                  legacyDecorator: true,
+                  react: {
+                    runtime: "automatic",
+                    development: false,
+                    refresh: false,
+                  },
+                },
+              },
+              env: {
+                targets: ["> 0.25%", "not dead", "not ie 11", "safari >= 14"],
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: "src/app/index.html",
+  })],
+  devtool: false, // "source-map",
+  mode: "production",
+  entry: "src/app/index.tsx",
+  resolve: {
+    extensions: [".js", ".ts", ".tsx", "scss"],
+    modules: ["node_modules", "src"].filter(Boolean),
+    alias: {
+      src: path.resolve("src"),
+    },
+    symlinks: false,
   },
 };
 

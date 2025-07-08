@@ -1,0 +1,438 @@
+<% if(!isWhiteLabel) { %>
+<!--# set var='trackjsAppKey' value='' -->
+<!--# if expr='$cookie_envid = /production/'-->
+<!--# set var='trackjsAppKey' value='front_avia' -->
+<!--# elif expr='$cookie_envid = /staging/' -->
+<!--# set var='trackjsAppKey' value='front_avia_staging' -->
+<!--# endif-->
+<% } %>
+<!DOCTYPE html>
+<html
+  lang="<%= lang %>"
+  data-trackjs-app-key="<!--#echo var='trackjsAppKey'-->"
+  style="height: 100%"
+>
+  <head data-version="<%= version %>">
+    <meta name="robots" content="noindex" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+    <% if(!isWhiteLabel) { %>
+    <!--# set var='flights' value='aviabilety' -->
+    <!--# if expr='$lang = uk-ua' -->
+    <!--# set var='flights' value='aviabileti' -->
+    <!--# elif expr='$lang = /en/' -->
+    <!--# set var='flights' value='flights' -->
+    <!--# elif expr='$lang = es' -->
+    <!--# set var='flights' value='vuelos' -->
+    <!--# elif expr='$lang = de' -->
+    <!--# set var='flights' value='fluege' -->
+    <!--# elif expr='$lang = pl' -->
+    <!--# set var='flights' value='loty' -->
+    <!--# elif expr='$lang = tr' -->
+    <!--# set var='flights' value='ucus' -->
+    <!--# endif -->
+
+    <!--# if expr='$REQUEST_URI = /(?:aviabilety|aviabileti|flights|fluege|vuelos|loty|ucus)\/(.+)\/.*/' -->
+    <!--# set var='city2city' value='$1' -->
+    <link
+      rel="canonical"
+      href="https://www.onetwotrip.com/<!--# echo var='lang' -->/<!--# echo var='flights' -->/<!--# echo var='city2city' -->/"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://www.onetwotrip.com/ru/aviabilety/<!--# echo var='city2city' -->/"
+      title="Русский - RUB"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru-us"
+      href="https://www.onetwotrip.com/ru-us/<!--# echo var='city2city' -->/"
+      title="Русский - USD"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru-uz"
+      href="https://www.onetwotrip.com/ru-uz<!--# echo var='city2city' -->/"
+      title="Русский - UZS"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru-kz"
+      href="https://www.onetwotrip.com/ru-kz/aviabilety/<!--# echo var='city2city' -->/"
+      title="Русский - KZT"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-gb"
+      href="https://www.onetwotrip.com/en-gb/flights/<!--# echo var='city2city' -->/"
+      title="English (UK) - GBP"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-us"
+      href="https://www.onetwotrip.com/en-us/flights/<!--# echo var='city2city' -->/"
+      title="English (US) - USD"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-ie"
+      href="https://www.onetwotrip.com/en-ie/flights/<!--# echo var='city2city' -->/"
+      title="English (IE) - EUR"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://www.onetwotrip.com/de/fluege/<!--# echo var='city2city' -->/"
+      title="Deutsch - EUR"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://www.onetwotrip.com/es/vuelos/<!--# echo var='city2city' -->/"
+      title="Español - EUR"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href="https://www.onetwotrip.com/pl/loty/<!--# echo var='city2city' -->/"
+      title="Polski - PLN"
+    />
+    <link
+      rel="alternate"
+      hreflang="tr"
+      href="https://www.onetwotrip.com/tr/ucus/<!--# echo var='city2city' -->/"
+      title="Türkçe - TRY"
+    />
+    <!--# else -->
+    <link rel="canonical" href="https://www.onetwotrip.com/<!--# echo var='lang' -->/" />
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://www.onetwotrip.com/ru/"
+      title="Русский - RUB"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru-kz"
+      href="https://www.onetwotrip.com/ru-kz/"
+      title="Русский - KZT"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-gb"
+      href="https://www.onetwotrip.com/en-gb/"
+      title="English (UK) - GBP"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-us"
+      href="https://www.onetwotrip.com/en-us/"
+      title="English (US) - USD"
+    />
+    <link
+      rel="alternate"
+      hreflang="en-ie"
+      href="https://www.onetwotrip.com/en-ie/"
+      title="English (IE) - EUR"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://www.onetwotrip.com/de/"
+      title="Deutsch - EUR"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://www.onetwotrip.com/es/"
+      title="Español - EUR"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href="https://www.onetwotrip.com/pl/"
+      title="Polski - PLN"
+    />
+    <link
+      rel="alternate"
+      hreflang="tr"
+      href="https://www.onetwotrip.com/tr/"
+      title="Türkçe - TRY"
+    />
+    <link rel="alternate" hreflang="kz" href="https://www.onetwotrip.com/kz/" title="Қазақ - KZT" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <%= metaBlock %>
+    <!--# endif -->
+    <% } %>
+
+    <% if(!isWhiteLabel) { %>
+    <style>
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://static.onetwotrip.com/fonts/inter/Inter-Regular.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/inter/Inter-Regular.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        src: url('https://static.onetwotrip.com/fonts/inter/Inter-Medium.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/inter/Inter-Medium.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        src: url('https://static.onetwotrip.com/fonts/inter/Inter-Bold.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/inter/Inter-Bold.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 300;
+        src: url('https://static.onetwotrip.com/fonts/roboto/Roboto-Light.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/roboto/Roboto-Light.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://static.onetwotrip.com/fonts/roboto/Roboto-Regular.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/roboto/Roboto-Regular.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto Mono';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://static.onetwotrip.com/fonts/roboto/RobotoMono-Regular.woff2')
+            format('woff2'),
+          url('https://static.onetwotrip.com/fonts/roboto/RobotoMono-Regular.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        src: url('https://static.onetwotrip.com/fonts/roboto/Roboto-Medium.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/roboto/Roboto-Medium.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        src: url('https://static.onetwotrip.com/fonts/roboto/Roboto-Bold.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/roboto/Roboto-Bold.woff') format('woff');
+      }
+
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://static.onetwotrip.com/fonts/inter/Inter-Regular.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/inter/Inter-Regular.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        src: url('https://static.onetwotrip.com/fonts/inter/Inter-Medium.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/inter/Inter-Medium.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        src: url('https://static.onetwotrip.com/fonts/inter/Inter-Bold.woff2') format('woff2'),
+          url('https://static.onetwotrip.com/fonts/inter/Inter-Bold.woff') format('woff');
+      }
+    </style>
+    <% } %>
+
+    <style>
+      body {
+        font: normal 14px / 20px Roboto, Arial, sans-serif;
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      [data-redesigned='true'] {
+        font-family: Inter, Arial, 'Helvetica Neue', Helvetica, sans-serif;
+        color: #212121;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      [data-redesigned='true'] {
+        font-family: Inter, Arial, 'Helvetica Neue', Helvetica, sans-serif;
+        color: #212121;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        background-color: transparent;
+        background-repeat: repeat;
+        background-position: left top;
+        background: #f7f7f7;
+      }
+      button {
+        margin: 0;
+        padding: 0;
+      }
+
+      button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+
+      ::-ms-reveal,
+      ::-ms-clear {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+
+      input[type='search']::-webkit-search-decoration,
+      input[type='search']::-webkit-search-cancel-button,
+      input[type='search']::-webkit-search-results-button,
+      input[type='search']::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+      }
+
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+      }
+
+      .appContainer {
+        position: relative;
+        box-sizing: border-box;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      #app {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+
+      /* safari добавляет свой паддинг для типа search */
+      @media not all and (min-resolution: 0.001dpcm) {
+        @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+          input[type='search'] {
+            -webkit-appearance: textfield;
+            padding: 14px 11px 1px;
+          }
+        }
+      }
+
+      @-ms-viewport {
+        width: device-width;
+      }
+
+      .loader {
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        background-color: #ffd41e;
+        height: 3px;
+        width: 800px;
+        transform: translateX(-100%);
+        animation: scroll-to-right 1.5s infinite;
+        -webkit-animation: scroll-to-right 1.5s infinite;
+        animation-delay: 3s;
+      }
+
+      @media screen and (max-width: 767px) {
+        .loader {
+          width: 240px;
+        }
+      }
+
+      @keyframes scroll-to-right {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100vw);
+        }
+      }
+    </style>
+    <% if(isWhiteLabel) { %>
+    <style>
+      html {
+        background: none;
+      }
+
+      body {
+        opacity: 0;
+      }
+    </style>
+    <% } %>
+    <script defer src="<%= l10nFile %>"></script>
+    <script defer src="<%= dictsFile %>"></script>
+  </head>
+  <body class="appContainer">
+    <div id="app">
+      <div class="loader"></div>
+    </div>
+    <script>
+      if (
+        window.location.href.includes('webview/seats') &&
+        window.location.href.includes('showPlaneLoader=true')
+      ) {
+        document.body.style.backgroundColor = '#e8e8e8';
+      }
+    </script>
+    <% if(!isWhiteLabel) { %>
+    <script defer>
+      window.addEventListener('load', function () {
+        let script = document.createElement('script');
+        script.src = '//www.googleadservices.com/pagead/conversion_async.js';
+        script.defer = true;
+        document.body.appendChild(script);
+      });
+    </script>
+    <% } %>
+  </body>
+</html>

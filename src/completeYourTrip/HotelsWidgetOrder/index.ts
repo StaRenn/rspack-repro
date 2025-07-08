@@ -1,0 +1,1 @@
+export { HotelsWidgetOrder } from './HotelsWidgetOrder';

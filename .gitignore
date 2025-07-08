@@ -3,6 +3,9 @@
 *.local
 *.log*
 
+# SWC
+.swc
+
 # Dist
 node_modules
 dist/
