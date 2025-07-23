@@ -1,8 +1,11 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import rspack from "@rspack/core";
+import * as sass from "sass";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isRunningWebpack = !!process.env.WEBPACK;
@@ -18,6 +21,14 @@ const mode = process.env.NODE_ENV || "development";
 const RefreshPlugin = isRunningWebpack
   ? ReactRefreshWebpackPlugin
   : ReactRefreshRspackPlugin;
+
+const extractCssLoader = isRunningWebpack
+  ? "mini-css-extract-plugin"
+  : rspack.CssExtractRspackPlugin.loader;
+
+const ExtractCssPlugin = isRunningWebpack
+  ? MiniCssExtractPlugin
+  : rspack.CssExtractRspackPlugin;
 
 /**
  * @type {import('webpack').Configuration | import('@rspack/cli').Configuration}
@@ -69,11 +80,40 @@ const config = {
           },
         ],
       },
+      {
+        test: /\.(scss|scss)$/,
+        include: [path.resolve(__dirname, "src")],
+        use: [
+          mode === "development" ? "style-loader" : extractCssLoader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              api: "modern-compiler",
+              implementation: "sass-embedded",
+              sassOptions: {
+                sourceMapIncludeSources: true,
+                logger: sass.Logger.silent,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/app/index.html",
+    }),
+    new ExtractCssPlugin({
+      filename:
+        mode === "development" ? "[name].css" : "[name].[contenthash].css",
     }),
     mode === "development" && new RefreshPlugin(),
   ].filter(Boolean),
@@ -81,7 +121,7 @@ const config = {
   mode,
   entry: "src/app/index.tsx",
   resolve: {
-    extensions: [".js", ".ts", ".tsx", "scss"],
+    extensions: [".js", ".ts", ".tsx", ".scss"],
     modules: ["node_modules", "src"].filter(Boolean),
     alias: {
       src: path.resolve("src"),
