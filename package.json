@@ -20,6 +20,7 @@
     "classnames": "^2.5.1",
     "cookie": "^1.0.2",
     "css-loader": "6.11.0",
+    "envinfo": "^7.14.0",
     "history": "4.10.1",
     "hoist-non-react-statics": "^3.3.2",
     "html-webpack-plugin": "^5.6.3",
